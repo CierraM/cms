@@ -1,0 +1,23 @@
+.flex {
+    display: flex;
+    align-items: center;
+    justify-content: start;
+}
+
+.flex dt {
+    margin-right: 5px;
+}
+
+.panel-head-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.thumbnail-img {
+    max-width: 100px;
+}
+
+.btn-container .btn {
+    margin: 5px;
+}
