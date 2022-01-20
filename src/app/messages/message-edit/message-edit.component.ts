@@ -32,7 +32,7 @@ export class MessageEditComponent implements OnInit {
 
   onClear() {
     this.subjectInputRef.nativeElement.value = '';
-    this.subjectInputRef.nativeElement.value = '';
+    this.msgTextInputRef.nativeElement.value = '';
   }
 
 }
