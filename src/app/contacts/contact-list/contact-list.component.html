@@ -1,9 +1,9 @@
 <div class="row panel panel-default">
     <div class="panel-heading">
         <h2>Contacts</h2>
-        <button class="btn btn-success">New Contact</button>
+        <button class="btn btn-success" [routerLink]="['new']">New Contact</button>
     </div>
-    <cms-contact-item *ngFor="let contactEl of contacts" [contact]="contactEl" (click)="onSelected(contactEl)"></cms-contact-item>
+    <cms-contact-item *ngFor="let contactEl of contacts; let id" [contact]="contactEl" ></cms-contact-item>
 
     <div class="row panel-body">
         <div class="col-xs-12">

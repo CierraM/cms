@@ -5,8 +5,8 @@
         <div class="panel-head-content">
             <img class="thumbnail-img" src="{{contact.imageUrl}}" alt="{{contact.name}}">
             <div class="btn-container">
-                <a href="#" class="btn btn-primary">Edit</a>
-                <a href="" class="btn btn-danger">Delete</a>
+                <a class="btn btn-primary" routerLink="edit">Edit</a>
+                <a class="btn btn-danger" (click)="onDelete()">Delete</a>
             </div>
         </div>
 
