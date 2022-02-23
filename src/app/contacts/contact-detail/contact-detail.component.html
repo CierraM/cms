@@ -22,5 +22,11 @@
                 <dd>{{contact.phone}}</dd>
             </div>
         </dl>
+        <h4 *ngIf="contact.group">Group Members:</h4>
+        <div *ngFor="let c of contact.group; let i = index">
+            <div>
+              <cms-contact-item class="col-sm-11" [contact]="c"></cms-contact-item>
+            </div>
+          </div>
     </div>
 </div>
