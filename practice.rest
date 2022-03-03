@@ -1,0 +1,1 @@
+GET https://angular-http-57b12-default-rtdb.firebaseio.com/contacts.json
