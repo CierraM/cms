@@ -7,20 +7,20 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 @Injectable({
   providedIn: 'root'
 })
-  
+
 export class MessageService {
   private messages: Message[];
   maxId: number;
   messageChangedEvent = new EventEmitter<Message[]>();
 
 
-  constructor(private http:HttpClient) {
-    this.messages = MOCKMESSAGES;
+  constructor(private http: HttpClient) {
+    this.messages = [];
     this.maxId = this.getMaxId();
   }
-  
-  getMessages(){
-    this.http.get('https://angular-http-57b12-default-rtdb.firebaseio.com/messages.json').subscribe((messages: Message[]) => {
+
+  getMessages() {
+    this.http.get('http://localhost:3000/messages').subscribe((messages: Message[]) => {
       //success
       this.messages = messages;
       this.maxId = this.getMaxId();
@@ -59,11 +59,18 @@ export class MessageService {
     if (!message) {
       return;
     }
-    this.maxId++
-    message.id = this.maxId.toString();
-    this.messages.push(message);
-    this.storeMessages();
-    this.messageChangedEvent.emit(this.messages.slice());
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+    // add to database
+    this.http.post<{ message: Message, }>('http://localhost:3000/messages',
+      message,
+      { headers: headers })
+      .subscribe(
+        (responseData) => {
+          // add new message to messages
+          this.messages.push(responseData.message);
+          this.messageChangedEvent.next(this.messages.slice());
+        }
+      );
 
   }
 

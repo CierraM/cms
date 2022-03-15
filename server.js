@@ -4,6 +4,9 @@ var path = require('path');
 var http = require('http');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+var mongoose = require('mongoose');
+const dotenv = require('dotenv')
+dotenv.config()
 
 // import the routing file to handle the default (index) route
 var index = require('./server/routes/app');
@@ -45,6 +48,18 @@ app.use('/', index);
 app.use('/messages', messageRoutes);
 app.use('/contacts', contactRoutes);
 app.use('/documents', documentsRoutes); 
+
+// establish a connection to the mongo database
+mongoose.connect(process.env.MONGODB_URI,
+   { useNewUrlParser: true }, (err, res) => {
+      if (err) {
+         console.log('Connection failed: ' + err);
+      }
+      else {
+         console.log('Connected to database!');
+      }
+   }
+);
 
 // Tell express to map all other non-defined routes back to the index page
 app.get('*', (req, res) => {
