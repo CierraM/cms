@@ -2,7 +2,6 @@ import { Component, OnDestroy, OnInit,  } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import Contact from '../contact.model';
 import { ContactService } from '../contact.service';
-import { Params } from '@angular/router';
 import { Subscription } from 'rxjs';
 
 @Component({

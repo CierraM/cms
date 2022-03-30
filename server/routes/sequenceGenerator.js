@@ -10,11 +10,9 @@ function SequenceGenerator() {
   Sequence.findOne()
     .exec(function(err, sequence) {
       if (err) {
-        return res.status(500).json({
-          title: 'An error occurred',
-          error: err
-        });
+        return console.log(err)
       }
+
       sequenceId = sequence._id;
       maxDocumentId = sequence.maxDocumentId;
       maxMessageId = sequence.maxMessageId;

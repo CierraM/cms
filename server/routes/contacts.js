@@ -15,6 +15,16 @@ router.get('/', (req, res, next) => {
         })
 });
 
+router.get('/:id', (req, res, next) => {
+    const id = req.params.id
+    console.log(req.params)
+    Contact.findOne({ id: id }).then(contact => {
+        res.status(200).json(contact)
+    }).catch(err => {
+        res.status(500).json({message: 'could not get contact', error: err})
+    })
+})
+
 router.post('/', (req, res, next) => {
     const maxContactId = sequenceGenerator.nextId("contacts");
 

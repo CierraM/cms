@@ -37,13 +37,13 @@ export class ContactService {
   }
   
   getContact(id: string): Contact {
-    let selected = null
-    this.contacts.forEach(contact => {
-      if (contact.id === id) {
-        selected = contact
-      }
+    let newContact;
+    this.http.get('http://localhost:3000/contacts/' + id).subscribe((contact: Contact) => {
+      newContact = contact
+      console.log(contact)
     })
-    return selected;
+    return newContact;
+   
   }
 
 
